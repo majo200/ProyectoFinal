@@ -40,9 +40,29 @@ public class mostrarGanadorTRES : MonoBehaviour
                       texto.text = "El ganador es el Jugador #2 con " + puntaje.jugador2.ToString() + " puntos";
                     }
 
-                    else
+                    else if(puntaje.jugador3>puntaje.jugador1 && puntaje.jugador3>puntaje.jugador1)
                     {
                        texto.text = "El ganador es el Jugador #3 con " + puntaje.jugador3.ToString() + " puntos";
+                    }
+
+                    else if(puntaje.jugador1 == puntaje.jugador2 && puntaje.jugador1 == puntaje.jugador3)
+                    {
+                      texto.text = "Ha ocurrido un empate entre los 3 jugadores, todos obtuvieron " + puntaje.jugador3.ToString() + " puntos";
+                    }
+
+                    else if (puntaje.jugador1 == puntaje.jugador2)
+                    {
+                      texto.text = "Ha ocurrido un empate entre el jugador #1 y el jugador #2, ambos obtuvieron " + puntaje.jugador2.ToString() + " puntos";
+                    }
+
+                    else if (puntaje.jugador1 == puntaje.jugador3)
+                    {
+                      texto.text = "Ha ocurrido un empate entre el jugador #1 y el jugador #3, ambos obtuvieron " + puntaje.jugador1.ToString() + " puntos";
+                    }
+
+                    else if (puntaje.jugador3 == puntaje.jugador2)
+                    {
+                      texto.text = "Ha ocurrido un empate entre el jugador #2 y el jugador #3, ambos obtuvieron " + puntaje.jugador2.ToString() + " puntos";
                     }
                     
                 } 

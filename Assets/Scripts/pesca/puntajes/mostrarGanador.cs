@@ -35,9 +35,14 @@ public class mostrarGanador : MonoBehaviour
                       texto.text = "El ganador es el Jugador #1 con" + puntaje.jugador1.ToString() + " puntos";
                     }
 
-                    else
+                    else if (puntaje.jugador1 < puntaje.jugador2)
                     {
                       texto.text = "El ganador es el Jugador #2 con " + puntaje.jugador2.ToString() + " puntos";
+                    }
+
+                    else
+                    {
+                      texto.text = "Ha ocurrido un empate entre los jugadores, ambos obtuvieron " + puntaje.jugador2.ToString() + " puntos";
                     }
                     
                 } 

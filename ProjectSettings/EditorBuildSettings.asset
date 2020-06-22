@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/pescaTRES.unity
     guid: 68e7b9ba328fc2b4cba10d61c8849805
+  - enabled: 1
+    path: Assets/Scenes/golpeatopoDOS.unity
+    guid: 8427041a1f7cc6b49a9eadc89d8c3520
   m_configObjects: {}
