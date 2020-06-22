@@ -40,15 +40,15 @@ public class mostrarGanador : MonoBehaviour
                 secondsCounter += Time.deltaTime;
                 if (secondsCounter>7 && secondsCounter < 7.1)
                 {
-                    panelGanador.SetActive(true);
+                    panelGanador.SetActive(true);                    
                     if (puntaje.jugador1 > puntaje.jugador2)
                     {
-                      texto.text = "El ganador es el Jugador #1 con " + puntaje.jugador1.ToString() + " puntos";
+                      texto.text = "Jugador #1 con " + puntaje.jugador1.ToString() + " puntos";
                     }
 
                     else if (puntaje.jugador1 < puntaje.jugador2)
                     {
-                      texto.text = "El ganador es el Jugador #2 con " + puntaje.jugador2.ToString() + " puntos";
+                      texto.text = "Jugador #2 con " + puntaje.jugador2.ToString() + " puntos";
                     }
 
                     else

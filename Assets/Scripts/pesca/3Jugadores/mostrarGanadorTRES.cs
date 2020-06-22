@@ -10,20 +10,35 @@ public class mostrarGanadorTRES : MonoBehaviour
     public GameObject objetoTexto;
     float secondsCounter;
     public GameObject panelControl;
+    public GameObject calculando;
     void Start()
-    {
-        panelGanador = GameObject.Find("panelGanador");
+    {       
         objetoTexto = GameObject.Find("objetoTexto");
         texto = objetoTexto.GetComponent<Text>();
         puntaje = GameObject.Find("objetoPuntaje").GetComponent<almacenaPuntajesTRES>();
         secondsCounter = 0; 
         panelControl= GameObject.Find("panel_Teclado");
+        calculando = GameObject.FindWithTag("CALCULANDO"); 
+        calculando.SetActive(false); 
+         panelGanador = GameObject.Find("panelGanador");
+        panelGanador.SetActive(false);
     }
 
     void Update()
     {
+        if(calculando==null)
+         {
+            calculando = GameObject.FindWithTag("CALCULANDO");    
+         }
+
+        if(panelControl==null)
+        {
+            panelControl= GameObject.Find("panel_Teclado");
+        }
+
         if (puntaje.jugador3 != 0)
-        {            
+        {       
+                calculando.SetActive(true); 
                 panelControl.SetActive(false);
                 Debug.Log("sec" + secondsCounter);          
                 secondsCounter += Time.deltaTime;
@@ -32,17 +47,17 @@ public class mostrarGanadorTRES : MonoBehaviour
                     panelGanador.SetActive(true);
                     if (puntaje.jugador1 > puntaje.jugador2 && puntaje.jugador1>puntaje.jugador3)
                     {
-                      texto.text = "El ganador es el Jugador #1 con" + puntaje.jugador1.ToString() + " puntos";
+                      texto.text = "El Jugador #1 con" + puntaje.jugador1.ToString() + " puntos";
                     }
 
                     else if(puntaje.jugador2>puntaje.jugador1 && puntaje.jugador2>puntaje.jugador3)                    
                     {
-                      texto.text = "El ganador es el Jugador #2 con " + puntaje.jugador2.ToString() + " puntos";
+                      texto.text = "El Jugador #2 con " + puntaje.jugador2.ToString() + " puntos";
                     }
 
                     else if(puntaje.jugador3>puntaje.jugador1 && puntaje.jugador3>puntaje.jugador1)
                     {
-                       texto.text = "El ganador es el Jugador #3 con " + puntaje.jugador3.ToString() + " puntos";
+                       texto.text = "El Jugador #3 con " + puntaje.jugador3.ToString() + " puntos";
                     }
 
                     else if(puntaje.jugador1 == puntaje.jugador2 && puntaje.jugador1 == puntaje.jugador3)

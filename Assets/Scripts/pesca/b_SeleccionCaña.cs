@@ -12,14 +12,11 @@ public class b_SeleccionCaña : MonoBehaviour
     public Image punt_A;
     public Image punt_V;
     public Image punt_R;
-    public GameObject panelGanador;  
     public string cañaSeleccionada;
     public GameObject panelControl;
 
     void Start()
-    {
-        panelGanador = GameObject.Find("panelGanador");
-        panelGanador.SetActive(false);
+    {   
 
         cañaVerde = GameObject.Find("CañaVerde");
         cañaVerde.SetActive(false);
@@ -42,6 +39,7 @@ public class b_SeleccionCaña : MonoBehaviour
         panelControl.SetActive(false);
     }
 
+ 
     public void verde()
     {
         miPanel.SetActive(false);
