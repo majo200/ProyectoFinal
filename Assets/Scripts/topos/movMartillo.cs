@@ -5,20 +5,18 @@ using UnityEngine;
 public class movMartillo : MonoBehaviour
 {
     public GameObject martillo;    
-    float velocidad = 3.5f;
-    // Start is called before the first frame update
+    float velocidad = 3.5f;    
+    public bool bajando;
+    float secondsCounter;
+ 
     void Start()
     {
-        martillo = GameObject.Find("martillo");
+        martillo = GameObject.Find("martillo"); 
+        bajando=true;
+        secondsCounter = 0;            
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
-
-      public void derecha()
+    public void derecha()
     {
         martillo.transform.localPosition += new Vector3(0f, 0f, 6f) * Time.deltaTime;
     }
@@ -37,4 +35,20 @@ public class movMartillo : MonoBehaviour
     {        
         martillo.transform.position += transform.right * velocidad * Time.deltaTime;
     }  
+
+    public void golpear()
+    {           
+        Debug.Log("CLICK");
+        if(bajando==true)
+        {
+            martillo.transform.position -= transform.up *2;            
+        }
+        else
+        {
+            martillo.transform.position += transform.up *  2;
+        }
+        bajando=!bajando;
+    }
+
+  
 }
