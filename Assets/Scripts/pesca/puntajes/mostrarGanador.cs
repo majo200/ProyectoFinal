@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class mostrarGanador : MonoBehaviour
 {
     public almacenaPuntajes puntaje;
@@ -9,22 +10,32 @@ public class mostrarGanador : MonoBehaviour
     public Text texto;
     public GameObject objetoTexto;
     float secondsCounter;
-    public GameObject panelControl;
+    public GameObject panelControl;    
+    public GameObject calculando;
     void Start()
-    {
-        panelGanador = GameObject.Find("panelGanador");
+    {        
         objetoTexto = GameObject.Find("objetoTexto");
         texto = objetoTexto.GetComponent<Text>();
         puntaje = GameObject.Find("objetoPuntaje").GetComponent<almacenaPuntajes>();
         secondsCounter = 0; 
         panelControl= GameObject.Find("panel_Teclado");
+        panelGanador = GameObject.Find("panelGanador");
+        calculando = GameObject.FindWithTag("CALCULANDO"); 
+        calculando.SetActive(false); 
+        panelGanador.SetActive(false);
     }
 
     void Update()
     {
+         if(calculando==null)
+         {
+            calculando = GameObject.FindWithTag("CALCULANDO");    
+         }
+         
         if (puntaje.jugador2 != 0)
-        {              
-                panelControl.SetActive(false);   
+        {       
+                calculando.SetActive(true); 
+                panelControl.SetActive(false);              
                 Debug.Log("sec" + secondsCounter);          
                 secondsCounter += Time.deltaTime;
                 if (secondsCounter>7 && secondsCounter < 7.1)
@@ -32,7 +43,7 @@ public class mostrarGanador : MonoBehaviour
                     panelGanador.SetActive(true);
                     if (puntaje.jugador1 > puntaje.jugador2)
                     {
-                      texto.text = "El ganador es el Jugador #1 con" + puntaje.jugador1.ToString() + " puntos";
+                      texto.text = "El ganador es el Jugador #1 con " + puntaje.jugador1.ToString() + " puntos";
                     }
 
                     else if (puntaje.jugador1 < puntaje.jugador2)

@@ -24,7 +24,7 @@ public class almacenaPuntajes : MonoBehaviour
     {
         jugador1 = 0;
         jugador2 = 0;
-         turno = 2;
+        turno = 2;
     }
 
     void Update()
