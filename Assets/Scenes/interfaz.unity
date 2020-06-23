@@ -285,7 +285,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: dardos
+          m_StringArgument: JugadoresDardos
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &688800940
@@ -1312,7 +1312,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: beerpong
+          m_StringArgument: JugadoresBeer
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1286458825
