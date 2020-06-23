@@ -63,7 +63,7 @@ public class codigoTopos : MonoBehaviour
         //Si el aleatorio es 2, sube el topo 2
         else if(aleatorio==2)
         {
-            if(contador<300)
+            if(contador < 300)
             {
                  contador += subirOBajar(topo2);
             }
@@ -79,7 +79,7 @@ public class codigoTopos : MonoBehaviour
         //Si el aleatorio es 3, sube el topo 3        
         else if(aleatorio==3)
         {
-            if(contador<300)
+            if(contador < 300)
             {
                  contador += subirOBajar(topo3);
             }
@@ -95,7 +95,7 @@ public class codigoTopos : MonoBehaviour
         //Si el aleatorio es 4, sube el topo 4
         else if(aleatorio==4)
         {
-            if(contador<300)
+            if(contador < 300)
             {
                  contador += subirOBajar(topo4);
             }
@@ -117,13 +117,13 @@ public class codigoTopos : MonoBehaviour
       int cont=1;
         
             //si el topo no ha subido del todo, siga subiendo
-            if (topo.transform.position.y <6.29f && estado.Equals("subiendo"))
+            if (/*topo.transform.position.y <6.29f &&*/ estado.Equals("subiendo"))
             {
                topo.transform.localPosition += increaseValues * (Time.deltaTime/100);   
             } 
        
             //El topo baja
-            else if(topo.transform.position.y >4.91f )
+            else /*if(topo.transform.position.y >4.91f )*/
             {
                topo.transform.localPosition -= increaseValues * (Time.deltaTime/100);
                estado="bajando";
