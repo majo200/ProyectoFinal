@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class colisionPescaTRES : MonoBehaviour
 {   
+    //MÉTODO PARA LA CAÑA ROJA, ES IGUAL AL DE LA CAÑA AMARILLA, PARA LOS COMENTARIOS DE LA EXPLICACIÓN 
+    //VER EL SCRIPT: colisionAmarilloTRES
+
     public almacenaPuntajesTRES puntajes;
     public GameObject objetoPuntaje;
     public int rojos;
@@ -25,9 +28,9 @@ public class colisionPescaTRES : MonoBehaviour
         objetoPuntaje= GameObject.Find("objetoPuntaje");
         puntajes= objetoPuntaje.GetComponent<almacenaPuntajesTRES>();       
     }
+
     void OnTriggerEnter(Collider other)
-    {
-        //Output the Collider's GameObject's name
+    {        
         Debug.Log("Pez Atrapado" + "\n");
         pez = other.gameObject;
         pez.SetActive(false);
@@ -36,17 +39,16 @@ public class colisionPescaTRES : MonoBehaviour
         {
             rojos+=2;
             textoMISMO.text = rojos.ToString();
-        }
-           
+        }           
 
         else
         {
             otros+=3;
              textoOTRO.text = otros.ToString();
         }
-
         
     }
+
     void Update()
     {
         if (rojos == 14)
@@ -66,7 +68,6 @@ public class colisionPescaTRES : MonoBehaviour
             {
                 puntajes.jugador3 = final;
             }
-
         }
     }
 }

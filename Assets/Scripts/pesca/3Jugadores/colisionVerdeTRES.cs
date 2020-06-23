@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class colisionVerdeTRES : MonoBehaviour
 {
+    //MÉTODO PARA LA CAÑA VERDE, ES IGUAL AL DE LA CAÑA AMARILLA, PARA LOS COMENTARIOS DE LA EXPLICACIÓN 
+    //VER EL SCRIPT: colisionAmarilloTRES
+
     public almacenaPuntajesTRES puntajes;
     public GameObject objetoPuntaje;
     public int verdes;
@@ -25,9 +28,9 @@ public class colisionVerdeTRES : MonoBehaviour
         objetoPuntaje= GameObject.Find("objetoPuntaje");
         puntajes= objetoPuntaje.GetComponent<almacenaPuntajesTRES>();        
     }
+
     void OnTriggerEnter(Collider other)
-    {
-        //Output the Collider's GameObject's name
+    {        
         Debug.Log("Pez Atrapado" + "\n");
         pez = other.gameObject;
         pez.SetActive(false);
@@ -36,17 +39,15 @@ public class colisionVerdeTRES : MonoBehaviour
         {
             verdes+=2;
             textoMISMO.text = verdes.ToString();
-        }
-           
+        }           
 
         else
         {
             otros+=3;
              textoOTRO.text = otros.ToString();
-        }
-
-        
+        }        
     }
+
     void Update()
     {
         if (verdes == 14)
@@ -66,7 +67,6 @@ public class colisionVerdeTRES : MonoBehaviour
             {
                 puntajes.jugador3 = final;
             }
-
         }
     }
 }
