@@ -9,8 +9,8 @@ public class beerPong : MonoBehaviour
     public GameObject Flecha;
     public Rigidbody rigidPelota;
     public GameObject flechaIndicadora;
-    public float rotacionY = 1.0f;
-    public float rotacionZ = -0.15f;
+    public float rotacionY = 1.5f;
+    public float rotacionZ = -0.35f;
 
     public bool valorXObtenido = false;
     public bool valorYObtenido = false;
@@ -30,6 +30,7 @@ public class beerPong : MonoBehaviour
     {
         Debug.Log("Inicio Beer Pong");
         rigidPelota = pelota.GetComponent<Rigidbody>();
+        rigidPelota.isKinematic = true;
         Flecha = GameObject.Find("FlechaIndicadora");
     }
 
@@ -55,19 +56,14 @@ public class beerPong : MonoBehaviour
             flechaIndicadora.transform.Rotate(0,0,rotacionZ, Space.Self);
         }
         
-        //obteniendo el valor de la fuerza del disparo en el eje y
-        direccionEjeY();
-        //Obteniendo el valor de la fuerza del disparo en el eje X
-        direccionEjeX();
-        //Lanzando pelota
-        lanzarPelota();
+        
 
     }
 
     //obtener la fuerza para aplicar en el eje x
     public void direccionEjeX(){
         
-        if(Input.touchCount != 0 && valorXObtenido == false){
+        
             valorRotX = flechaIndicadora.transform.rotation.eulerAngles.y;
             if(valorRotX >= 0 && valorRotX <= 60){
                 valorFuerzaX = (valorRotX * 9.11f)/60;
@@ -78,13 +74,13 @@ public class beerPong : MonoBehaviour
             valorXObtenido = true;
             Debug.Log("El valor de la fuerza en X es: " + valorFuerzaX);
             Debug.Log("El valor de la rotacion en X es: " + valorRotX);
-        }
+        
     }
 
     //Obtener la fuerza para aplicar en el eje y
     public void direccionEjeY(){
         
-        if(Input.touchCount != 0 && valorYObtenido == false && valorXObtenido == true){
+        
             valorRotY = flechaIndicadora.transform.rotation.eulerAngles.z;
             if(valorRotY >= 300 ){
                 valorRotY = 360 - valorRotY;
@@ -93,11 +89,12 @@ public class beerPong : MonoBehaviour
             valorYObtenido = true;
             Debug.Log("El valor de la fuerza en Y es: " + valorFuerzaY);
             Debug.Log("El valor de la rotacion en Y es: " + valorRotY);
-        }
+            lanzarPelota();
     }
 
     public void lanzarPelota(){
-        if(Input.touchCount != 0 && valorXObtenido == true && valorYObtenido == true && pelotaLanzada == false){
+
+            rigidPelota.isKinematic = false;
             rigidPelota.AddForce(-15,valorFuerzaY,valorFuerzaX,ForceMode.Impulse); 
             pelotaLanzada = true;
             Flecha.transform.rotation = Quaternion.Euler(0,0,0);
@@ -106,8 +103,8 @@ public class beerPong : MonoBehaviour
             valorRotY = 0;
             valorFuerzaX = 0;
             valorFuerzaY = 0;
-
-        }
+            
+            
     }
 }
 

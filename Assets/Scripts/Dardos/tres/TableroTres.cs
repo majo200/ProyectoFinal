@@ -77,7 +77,6 @@ public class TableroTres : MonoBehaviour
                 velocidad *= -1f;
                 }
                 transform.Translate(0,velocidad * Time.deltaTime,0);
-                seleccionarY();
             }
 
             if(seleccionadoX1 == false){
@@ -87,7 +86,6 @@ public class TableroTres : MonoBehaviour
                 velocidad *= -1f;
                 }
                 transform.Translate(velocidad * Time.deltaTime,0,0);
-                seleccionarX();
             }
         }
 
@@ -105,7 +103,6 @@ public class TableroTres : MonoBehaviour
                 velocidad *= -1f;
                 }
                 transform.Translate(0,velocidad * Time.deltaTime,0);
-                seleccionarY();
             }
 
             if(seleccionadoX2 == false){
@@ -115,7 +112,6 @@ public class TableroTres : MonoBehaviour
                 velocidad *= -1f;
                 }
                 transform.Translate(velocidad * Time.deltaTime,0,0);
-                seleccionarX();
             }
         }
 
@@ -133,7 +129,6 @@ public class TableroTres : MonoBehaviour
                 velocidad *= -1f;
                 }
                 transform.Translate(0,velocidad * Time.deltaTime,0);
-                seleccionarY();
             }
 
             if(seleccionadoX3 == false){
@@ -143,15 +138,13 @@ public class TableroTres : MonoBehaviour
                 velocidad *= -1f;
                 }
                 transform.Translate(velocidad * Time.deltaTime,0,0);
-                seleccionarX();
             }
         }
         
     }
 
     public void seleccionarX(){
-        if(Input.touchCount != 0)
-        {
+        
             if(turnoJugador1 == true){
                 seleccionadoX1 = true;
             }else if(turnoJugador2 == true){
@@ -159,11 +152,10 @@ public class TableroTres : MonoBehaviour
             }else if(turnoJugador3 == true){
                 seleccionadoX3 = true;
             }
-        }
+        
     }
     public void seleccionarY(){
-        if(Input.touchCount != 0)
-        {
+        
             if(turnoJugador1 == true){
                 seleccionadoY1 = true;
             }else if(turnoJugador2 == true){
@@ -171,7 +163,7 @@ public class TableroTres : MonoBehaviour
             }else if(turnoJugador3 == true){
                 seleccionadoY3 = true;
             }
-        }
+        
     }
     public void lanzarDardo(GameObject DardoColor){
         DardoColor.transform.Translate(0,0,-13f * Time.deltaTime);
