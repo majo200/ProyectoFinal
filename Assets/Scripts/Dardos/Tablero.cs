@@ -33,6 +33,8 @@ public class Tablero : MonoBehaviour
     public string estado;
     //Variable que utilizaremos para la espera
     float secondsCounter;
+    public GameObject b_x;
+    public GameObject b_y;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +46,9 @@ public class Tablero : MonoBehaviour
         estado = "derecha";
         secondsCounter = 0;
         tablero = GameObject.Find("tableroDardos");
+        b_x = GameObject.Find("x");
+        b_y = GameObject.Find("y");
+        b_y.SetActive(false);
     }
 
     // Update is called once per frame
@@ -70,6 +75,8 @@ public class Tablero : MonoBehaviour
         if(turnoJugador1 == true){
 
             if(seleccionadoX1 == true && seleccionadoY1 == false && contadorSelección1 == 1){
+                b_x.SetActive(false);
+                b_y.SetActive(true);
                 if (estado == "subiendo")
                 {
                     metodoARRIBA();
@@ -82,6 +89,8 @@ public class Tablero : MonoBehaviour
             }
 
             if(seleccionadoX1 == false){
+                b_x.SetActive(true);
+                b_y.SetActive(false);
                 if (estado == "derecha")
                 {
                     metodoDERECHA();
@@ -102,6 +111,8 @@ public class Tablero : MonoBehaviour
         if(turnoJugador2 == true){
 
             if(seleccionadoX2 == true && seleccionadoY2 == false){
+                b_x.SetActive(false);
+                b_y.SetActive(true);
                 if (estado == "subiendo")
                 {
                     metodoARRIBA();
@@ -114,6 +125,8 @@ public class Tablero : MonoBehaviour
             }
 
             if(seleccionadoX2 == false){
+                b_x.SetActive(true);
+                b_y.SetActive(false);
                 if (estado == "derecha")
                 {
                     metodoDERECHA();
@@ -153,6 +166,7 @@ public class Tablero : MonoBehaviour
     public void lanzarDardo(GameObject DardoColor){
         DardoColor.transform.Translate(0,0,-13f * Time.deltaTime);
         laser.SetActive(false);
+        secondsCounter = 0;
     }
 
     void metodoDERECHA()
@@ -160,7 +174,7 @@ public class Tablero : MonoBehaviour
         Debug.Log(secondsCounter);
         secondsCounter += Time.deltaTime;
 
-        tablero.transform.position += transform.right *5f* (Time.deltaTime);
+        tablero.transform.position -= transform.right *5f* (Time.deltaTime);
 
         if (secondsCounter > 4)
         {
@@ -173,7 +187,7 @@ public class Tablero : MonoBehaviour
     {
         secondsCounter += Time.deltaTime;
 
-        tablero.transform.position -= transform.right *5f* (Time.deltaTime);
+        tablero.transform.position += transform.right *5f* (Time.deltaTime);
 
         if (secondsCounter > 4)
         {
@@ -186,7 +200,7 @@ public class Tablero : MonoBehaviour
     {
         secondsCounter += Time.deltaTime;
 
-        tablero.transform.position += transform.up * 5f * (Time.deltaTime);
+        tablero.transform.position -= transform.up * 5f * (Time.deltaTime);
 
         if (secondsCounter > 4)
         {
@@ -199,7 +213,7 @@ public class Tablero : MonoBehaviour
     {
         secondsCounter += Time.deltaTime;
 
-        tablero.transform.position -= transform.up * 5f * (Time.deltaTime);
+        tablero.transform.position += transform.up * 5f * (Time.deltaTime);
 
         if (secondsCounter > 4)
         {

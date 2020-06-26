@@ -6,7 +6,12 @@ public class DardoVerdeTres : MonoBehaviour
 {
     
     public TableroTres scriptTablero;
+    public GameObject tablero;
 
+    void Start()
+    {
+        tablero = GameObject.Find("tableroDardos");
+    }
     void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Diez"){
@@ -56,18 +61,22 @@ public class DardoVerdeTres : MonoBehaviour
     }
 
     public void restablecerPosicion(){
-        transform.position = new Vector3(-11.168f,5.68f,-3.57f);
+        tablero.transform.localPosition = new Vector3(-16.0201f, 0.16f, 6.63f);
+        scriptTablero.estado = "derecha";
+        transform.localPosition = new Vector3(0f,0f,0f);
         scriptTablero.seleccionadoX1 = false;
         scriptTablero.seleccionadoY1 = false;
         scriptTablero.laser.SetActive(true);
         scriptTablero.tirosJugador1++;
-        if(scriptTablero.tirosJugador1 >= 3){
+        if(scriptTablero.tirosJugador1 == 3)
+        {
+            scriptTablero.tirosJugador1 = 0;
             scriptTablero.turnoJugador1 = false;
             scriptTablero.turnoJugador2 = true;
             scriptTablero.dardo1.SetActive(false);
             scriptTablero.dardo2.SetActive(true);
             Debug.Log("Cambio de jugador");
-            scriptTablero.tirosJugador1 = 0;
+           
         }
     }
 }

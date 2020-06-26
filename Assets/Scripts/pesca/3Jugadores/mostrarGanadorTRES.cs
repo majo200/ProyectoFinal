@@ -52,6 +52,15 @@ public class mostrarGanadorTRES : MonoBehaviour
         {
             panelControl= GameObject.Find("panel_Teclado");
         }
+        if(objetoTexto==null)
+        {
+            objetoTexto = GameObject.Find("objetoTexto");
+            texto = objetoTexto.GetComponent<Text>();
+        }
+        if(panelGanador==null)
+        {
+            panelGanador = GameObject.Find("panelGanador");
+        }
 
         //Si el jugador 3 ya tiene un puntaje, es decir, que ya jugaron todas las personas
         if (puntaje.jugador3 != 0)
@@ -66,7 +75,7 @@ public class mostrarGanadorTRES : MonoBehaviour
                 //este método es para que espere alrededor de 7 segundos
                 secondsCounter += Time.deltaTime;
                 //Si ya pasó este tiempo
-                if (secondsCounter>7 && secondsCounter < 7.1)
+                if (secondsCounter>7 )
                 {
                     //Active el panel del ganador
                     panelGanador.SetActive(true);

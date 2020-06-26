@@ -102,7 +102,7 @@ public class codigoTopos : MonoBehaviour
               
         topo.transform.position += transform.up * (Time.deltaTime);  
                     
-         if (secondsCounter>1.5)
+         if (secondsCounter>1.7)
          {    
           secondsCounter=0;  
           estado="bajando"; 
@@ -115,7 +115,7 @@ public class codigoTopos : MonoBehaviour
 
         topo.transform.position -= transform.up * (Time.deltaTime);
         
-        if (secondsCounter>1.5)
+        if (secondsCounter>1.7)
         {       
           secondsCounter=0;           
           estado="subiendo";
