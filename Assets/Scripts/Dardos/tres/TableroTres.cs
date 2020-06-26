@@ -33,6 +33,13 @@ public class TableroTres : MonoBehaviour
     public int tirosJugador1 = 0;
     public int tirosJugador2 = 0;
     public int tirosJugador3 = 0;
+    public GameObject tablero;
+    //Variable para saber hacia qué lado va
+    public string estado;
+    //Variable que utilizaremos para la espera
+    float secondsCounter;
+    public GameObject b_x;
+    public GameObject b_y;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +50,12 @@ public class TableroTres : MonoBehaviour
         dardo3 = GameObject.Find("DardoAzul");
         dardo2.SetActive(false);
         dardo3.SetActive(false);
+        estado = "derecha";
+        secondsCounter = 0;
+        tablero = GameObject.Find("tableroDardos");
+        b_x = GameObject.Find("x");
+        b_y = GameObject.Find("y");
+        b_y.SetActive(false);
     }
 
     // Update is called once per frame
@@ -71,23 +84,29 @@ public class TableroTres : MonoBehaviour
         if(turnoJugador1 == true){
 
             if(seleccionadoX1 == true && seleccionadoY1 == false){
-                if(transform.position.y > 12f){
-                velocidad *= -1f;
-                }else if(transform.position.y < -1f){
-                velocidad *= -1f;
+                b_x.SetActive(false);
+                b_y.SetActive(true);
+                if (estado == "subiendo")
+                {
+                    metodoARRIBA();
                 }
-                transform.Translate(0,velocidad * Time.deltaTime,0);
-                seleccionarY();
+                else if (estado == "bajando")
+                {
+                    metodoABAJO();
+                }
             }
 
             if(seleccionadoX1 == false){
-                if(transform.position.z > 5.22f){
-                velocidad *= -1f;
-                }else if(transform.position.z < -7f){
-                velocidad *= -1f;
+                b_x.SetActive(true);
+                b_y.SetActive(false);
+                if (estado == "derecha")
+                {
+                    metodoDERECHA();
                 }
-                transform.Translate(velocidad * Time.deltaTime,0,0);
-                seleccionarX();
+                else if (estado == "izquierda")
+                {
+                    metodoIZQUIERDA();
+                }
             }
         }
 
@@ -98,24 +117,34 @@ public class TableroTres : MonoBehaviour
 
         if(turnoJugador2 == true){
 
-            if(seleccionadoX2 == true && seleccionadoY2 == false){
-                if(transform.position.y > 12f){
-                velocidad *= -1f;
-                }else if(transform.position.y < -1f){
-                velocidad *= -1f;
+            if (seleccionadoX2== true && seleccionadoY2 == false)
+            {
+                Debug.Log("ENTRA");
+                b_x.SetActive(false);
+                b_y.SetActive(true);
+                if (estado == "subiendo")
+                {
+                    metodoARRIBA();
                 }
-                transform.Translate(0,velocidad * Time.deltaTime,0);
-                seleccionarY();
+                else if (estado == "bajando")
+                {
+                    metodoABAJO();
+                }
             }
 
-            if(seleccionadoX2 == false){
-                if(transform.position.z > 5.22f){
-                velocidad *= -1f;
-                }else if(transform.position.z < -7f){
-                velocidad *= -1f;
+            if (seleccionadoX2 == false)
+            {
+                Debug.Log("ENTRA2");
+                b_x.SetActive(true);
+                b_y.SetActive(false);
+                if (estado == "derecha")
+                {
+                    metodoDERECHA();
                 }
-                transform.Translate(velocidad * Time.deltaTime,0,0);
-                seleccionarX();
+                else if (estado == "izquierda")
+                {
+                    metodoIZQUIERDA();
+                }
             }
         }
 
@@ -126,44 +155,55 @@ public class TableroTres : MonoBehaviour
 
         if(turnoJugador3 == true){
 
-            if(seleccionadoX3 == true && seleccionadoY3 == false){
-                if(transform.position.y > 12f){
-                velocidad *= -1f;
-                }else if(transform.position.y < -1f){
-                velocidad *= -1f;
+            if (seleccionadoX3 == true && seleccionadoY3 == false)
+            {
+                b_x.SetActive(false);
+                b_y.SetActive(true);
+                if (estado == "subiendo")
+                {
+                    metodoARRIBA();
                 }
-                transform.Translate(0,velocidad * Time.deltaTime,0);
-                seleccionarY();
+                else if (estado == "bajando")
+                {
+                    metodoABAJO();
+                }
             }
 
-            if(seleccionadoX3 == false){
-                if(transform.position.z > 5.22f){
-                velocidad *= -1f;
-                }else if(transform.position.z < -7f){
-                velocidad *= -1f;
+            if (seleccionadoX3 == false)
+            {
+                b_x.SetActive(true);
+                b_y.SetActive(false);
+                if (estado == "derecha")
+                {
+                    metodoDERECHA();
                 }
-                transform.Translate(velocidad * Time.deltaTime,0,0);
-                seleccionarX();
+                else if (estado == "izquierda")
+                {
+                    metodoIZQUIERDA();
+                }
             }
         }
         
     }
 
     public void seleccionarX(){
-        if(Input.touchCount != 0)
-        {
-            if(turnoJugador1 == true){
-                seleccionadoX1 = true;
-            }else if(turnoJugador2 == true){
-                seleccionadoX2 = true;
-            }else if(turnoJugador3 == true){
-                seleccionadoX3 = true;
-            }
+
+        if (turnoJugador1 == true) {
+            seleccionadoX1 = true;
+         estado = "subiendo";
         }
+        else if(turnoJugador2 == true){
+                seleccionadoX2 = true;
+            estado = "subiendo";
+        }
+        else if(turnoJugador3 == true){
+                seleccionadoX3 = true;
+            estado = "subiendo";
+        }
+        
     }
     public void seleccionarY(){
-        if(Input.touchCount != 0)
-        {
+        
             if(turnoJugador1 == true){
                 seleccionadoY1 = true;
             }else if(turnoJugador2 == true){
@@ -171,10 +211,64 @@ public class TableroTres : MonoBehaviour
             }else if(turnoJugador3 == true){
                 seleccionadoY3 = true;
             }
-        }
+        
     }
     public void lanzarDardo(GameObject DardoColor){
         DardoColor.transform.Translate(0,0,-13f * Time.deltaTime);
         laser.SetActive(false);
+        secondsCounter = 0;
     }
+    void metodoDERECHA()
+    {
+        Debug.Log(secondsCounter);
+        secondsCounter += Time.deltaTime;
+
+        tablero.transform.position -= transform.right * 5f * (Time.deltaTime);
+
+        if (secondsCounter > 5)
+        {
+            secondsCounter = 0;
+            estado = "izquierda";
+        }
+    }
+
+    void metodoIZQUIERDA()
+    {
+        secondsCounter += Time.deltaTime;
+
+        tablero.transform.position += transform.right * 5f * (Time.deltaTime);
+
+        if (secondsCounter > 5)
+        {
+            secondsCounter = 0;
+            estado = "derecha";
+        }
+    }
+
+    void metodoARRIBA()
+    {
+        secondsCounter += Time.deltaTime;
+
+        tablero.transform.position -= transform.up * 5f * (Time.deltaTime);
+
+        if (secondsCounter > 5)
+        {
+            secondsCounter = 0;
+            estado = "bajando";
+        }
+    }
+
+    void metodoABAJO()
+    {
+        secondsCounter += Time.deltaTime;
+
+        tablero.transform.position += transform.up * 5f * (Time.deltaTime);
+
+        if (secondsCounter > 5)
+        {
+            secondsCounter = 0;
+            estado = "subiendo";
+        }
+    }
+
 }

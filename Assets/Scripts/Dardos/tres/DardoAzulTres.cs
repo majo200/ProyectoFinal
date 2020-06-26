@@ -5,7 +5,12 @@ using UnityEngine;
 public class DardoAzulTres : MonoBehaviour
 {
    public TableroTres scriptTablero;
+    public GameObject tablero;
 
+    void Start()
+    {
+        tablero = GameObject.Find("tableroDardos");
+    }
     void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Diez"){
@@ -55,19 +60,22 @@ public class DardoAzulTres : MonoBehaviour
     }
 
     public void restablecerPosicion(){
-        transform.position = new Vector3(-11.168f,5.68f,-3.57f);
+        tablero.transform.localPosition = new Vector3(-16.0201f, 0.16f, 6.63f);
+        scriptTablero.estado = "derecha";
+        transform.localPosition = new Vector3(-25.1480f, 5.680f, -3.570f);
         scriptTablero.seleccionadoX3 = false;
         scriptTablero.seleccionadoY3 = false;
         scriptTablero.laser.SetActive(true);
         scriptTablero.tirosJugador3++;
-        if(scriptTablero.tirosJugador3 >= 3){
+        if(scriptTablero.tirosJugador3 ==3)
+        {
+            scriptTablero.tirosJugador3 = 0;
             scriptTablero.turnoJugador3 = false;
             scriptTablero.turnoJugador1 = true;
             scriptTablero.dardo3.SetActive(false);
             scriptTablero.dardo1.SetActive(true);
             Debug.Log("Cambio de jugador");
-            scriptTablero.ronda++;
-            scriptTablero.tirosJugador3 = 0;
+            scriptTablero.ronda++;            
         }
     }
 }

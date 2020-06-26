@@ -17,22 +17,22 @@ public class movMartillo : MonoBehaviour
         secondsCounter = 0;            
     }
 
-    public void derecha()
+    public void arriba()
     {
         martillo.transform.localPosition += new Vector3(0f, 0f, 6f) * Time.deltaTime;
     }
 
-    public void izquierda()
+    public void abajo()
     {
         martillo.transform.localPosition -= new Vector3(0f, 0f, 6f)*   Time.deltaTime;
     }
 
-    public void arriba()
+    public void izquierda()
     {
         martillo.transform.position -= transform.right * velocidad * Time.deltaTime;
     }
 
-    public void abajo()
+    public void derecha()
     {        
         martillo.transform.position += transform.right * velocidad * Time.deltaTime;
     }  

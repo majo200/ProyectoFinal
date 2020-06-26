@@ -15,6 +15,6 @@ public class rotacionPez : MonoBehaviour
    
     void Update()
     {
-        peces.transform.Rotate(0.0f, 1.0f, 0.0f, Space.Self);
+        peces.transform.Rotate(0.0f, 2.0f, 0.0f, Space.Self);
     }
 }

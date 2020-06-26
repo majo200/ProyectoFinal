@@ -18,12 +18,21 @@ public class pasarEscenaTRES : MonoBehaviour
     }
 
     void Update()
-    {                
-        if (codigoTiempo.reloj==0)
+    {            
+        if(codigoTiempo==null)
+        {
+            codigoTiempo = GameObject.Find("tiempo").GetComponent<tiempo>();
+        }
+        if(puntajes==null)
+        {
+            puntajes = GameObject.Find("objetoPuntaje").GetComponent<almacenaPuntajesTRES>();
+        }
+        if (codigoTiempo.reloj<=0)
         {          
             Debug.Log("ENTRA 1");
             metodoEspera();                
-        }            
+        } 
+       
     }
 
     void metodoEspera()
@@ -31,7 +40,7 @@ public class pasarEscenaTRES : MonoBehaviour
         Debug.Log(secondsCounter);
         secondsCounter += Time.deltaTime;
                 
-                if (secondsCounter>5 && secondsCounter < 5.1)
+                if (secondsCounter>5 )
                 {       
                      secondsCounter=0;                   
                      if(puntajes.jugador3==0)

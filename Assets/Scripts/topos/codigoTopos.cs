@@ -4,19 +4,20 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 public class codigoTopos : MonoBehaviour
 {
+    //METODO PARA SUBIR Y BAJAR LOS TOPOS ALEATORIAMENTE
     //Declaramos los objetos de la escena
     public GameObject topo1;
     public GameObject topo2;
     public GameObject topo3;
-    public GameObject topo4;
+    public GameObject topo4;  
+    //Variable para almacenar número aleatorio
+    public int aleatorio;   
+    //Variable para saber si el topo ya subió y bajó
+    public string estado;   
+     //Variable que utilizaremos para la espera
+    float secondsCounter;    
+   
 
-    //Variable que guardará el puntaje
-    
-    public int aleatorio;
-    public Vector3 increaseValues = new Vector3(0, 0.01f,0);
-    public string estado;
-    public int contador;
-    // Start is called before the first frame update
     void Start()
     {
         //Para que las encuentre en la escena
@@ -26,14 +27,14 @@ public class codigoTopos : MonoBehaviour
         topo4 = GameObject.Find("topo4");
         //todos los aleatorios comienzan en 0
         aleatorio=0;
-        estado="subiendo";    
-        
+        //El estado inicia en subiendo
+        estado="subiendo";  
+        secondsCounter = 0;    
     }
 
-    // Update is called once per frame
+    
     void Update()
-    {
-          
+    {          
       //Se genera un número aleatorio cuando ningún topo esté saliendo 
       if(aleatorio!=1 && aleatorio!=2 && aleatorio!=3 && aleatorio!=4 )
       {
@@ -44,93 +45,81 @@ public class codigoTopos : MonoBehaviour
         //Si el aleatorio es 1, sube el topo 1
         else if(aleatorio==1)
         {
-            //Este contador se utiliza para comprobar que ya el topo realizó todo el camino 
-            if(contador<300)
+            if(estado=="subiendo")
             {
-                 contador += subirOBajar(topo1);             
+                metodoSUBIR(topo1);
             }
-
-            //Cuando ya ha finalizado el camino, significa que un nuevo topo podrá subir
-            else
+            else if(estado=="bajando")
             {
-                contador=0;
-                aleatorio=0;
-                estado="subiendo";
-            }        
-          
+                metodoBAJAR(topo1);
+            }                 
         }
         
         //Si el aleatorio es 2, sube el topo 2
         else if(aleatorio==2)
         {
-            if(contador<300)
+               if(estado=="subiendo")
             {
-                 contador += subirOBajar(topo2);
+                metodoSUBIR(topo2);
             }
-            else
+            else if(estado=="bajando")
             {
-                contador=0;
-                aleatorio=0;
-                estado="subiendo";
-            }
-                  
+                metodoBAJAR(topo2);
+            }                     
         }
 
         //Si el aleatorio es 3, sube el topo 3        
         else if(aleatorio==3)
         {
-            if(contador<300)
+              if(estado=="subiendo")
             {
-                 contador += subirOBajar(topo3);
+                metodoSUBIR(topo3);
             }
-            else
+            else if(estado=="bajando")
             {
-                contador=0;
-                aleatorio=0;
-                estado="subiendo";
-            }
-            
+                metodoBAJAR(topo3);
+            }                
         }
 
         //Si el aleatorio es 4, sube el topo 4
         else if(aleatorio==4)
         {
-            if(contador<300)
+            if(estado=="subiendo")
             {
-                 contador += subirOBajar(topo4);
+                metodoSUBIR(topo4);
             }
-            else
+            else if(estado=="bajando")
             {
-                contador=0;
-                aleatorio=0;
-                estado="subiendo";
-            }
-          
-        }      
-        
-    }
+                metodoBAJAR(topo4);
+            }     
+        }              
+    }        
 
-    //Este es el método que nos permite cambiar la posición del topo
-    public int subirOBajar(GameObject topo)
+       void metodoSUBIR(GameObject topo)
+    {            
+        Debug.Log(secondsCounter);
+        secondsCounter += Time.deltaTime;
+              
+        topo.transform.position += transform.up * (Time.deltaTime);  
+                    
+         if (secondsCounter>1.7)
+         {    
+          secondsCounter=0;  
+          estado="bajando"; 
+         }
+    }    
+
+    void metodoBAJAR(GameObject topo)
     {
-        //El contador siempre va a ser uno, se va sumando arriba
-      int cont=1;
+        secondsCounter += Time.deltaTime;
+
+        topo.transform.position -= transform.up * (Time.deltaTime);
         
-            //si el topo no ha subido del todo, siga subiendo
-            if (topo.transform.position.y <6.29f && estado.Equals("subiendo"))
-            {
-               topo.transform.localPosition += increaseValues * (Time.deltaTime/100);   
-            } 
-       
-            //El topo baja
-            else if(topo.transform.position.y >4.91f )
-            {
-               topo.transform.localPosition -= increaseValues * (Time.deltaTime/100);
-               estado="bajando";
-            }
-            
-    //Me devuelve el contador para irlo sumando
-    return cont;
+        if (secondsCounter>1.7)
+        {       
+          secondsCounter=0;           
+          estado="subiendo";
+          aleatorio=0;
+        }
     }
-    
 }

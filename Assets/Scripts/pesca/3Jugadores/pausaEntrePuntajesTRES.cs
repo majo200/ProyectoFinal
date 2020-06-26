@@ -30,13 +30,21 @@ public class pausaEntrePuntajesTRES : MonoBehaviour
 
     
     void Update()
-    { 
+    {
         //Verificamos que los objetos hayan sido encontrados
-         if(pasarJug==null)
+        if (pasarJug == null)
         {
-            pasarJug = GameObject.FindWithTag("PASAR");    
-        }   
-         
+            pasarJug = GameObject.FindWithTag("PASAR");
+        }
+        if (objetoPuntaje == null)
+        {
+            objetoPuntaje = GameObject.Find("objetoPuntaje");
+        }
+        if (puntajes == null)
+        {
+            puntajes = objetoPuntaje.GetComponent<almacenaPuntajesTRES>();
+        }
+
         //Muestra en consola los 3 puntajes
         Debug.Log("1:" + puntajes.jugador1 + ", 2:" + puntajes.jugador2 + ", 3:" + puntajes.jugador3);
 
@@ -76,7 +84,7 @@ public class pausaEntrePuntajesTRES : MonoBehaviour
         secondsCounter += Time.deltaTime;
                 
                 //Si ya pasaron alrededor de 7 segundos
-                if (secondsCounter>7 && secondsCounter < 7.1)
+                if (secondsCounter>7 )
                 {       
                     secondsCounter=0;
                     //Almacene en el codigo de turnos el valor pasado arriba

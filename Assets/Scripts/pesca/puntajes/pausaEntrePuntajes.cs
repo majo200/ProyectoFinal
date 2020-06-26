@@ -26,7 +26,15 @@ public class pausaEntrePuntajes : MonoBehaviour
          if(pasarJug==null)
         {
             pasarJug = GameObject.FindWithTag("PASAR");    
-        }            
+        }       
+         if(objetoPuntaje==null)
+        {
+            objetoPuntaje = GameObject.Find("objetoPuntaje");
+        }
+         if(puntajes==null)
+        {
+            puntajes = objetoPuntaje.GetComponent<almacenaPuntajes>();
+        }
         Debug.Log("1:" + puntajes.jugador1 + ", 2:" + puntajes.jugador2);
         if (puntajes.jugador1 != 0 && puntajes.turno==2)
         {          
